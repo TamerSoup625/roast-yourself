@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmklbbdg7c8gf"]
+
+[ext_resource type="PackedScene" uid="uid://lyw3nk370iuh" path="res://scenes/player.tscn" id="1_3a2tl"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_64ydi"]
+[ext_resource type="PackedScene" uid="uid://bvrb4hhytfdxj" path="res://scenes/boss.tscn" id="2_6h3j4"]
+[ext_resource type="PackedScene" uid="uid://rhobyqpwwwaf" path="res://scenes/ui.tscn" id="4_8f3ew"]
+[ext_resource type="PackedScene" uid="uid://b1a6nucl0t5ft" path="res://scenes/pause_menu.tscn" id="5_vjala"]
+[ext_resource type="PackedScene" uid="uid://bi21ms6ojy0mu" path="res://scenes/game_over.tscn" id="6_gph2e"]
+[ext_resource type="PackedScene" uid="uid://dln57n2t1jmr2" path="res://scenes/floor.tscn" id="7_8x2oy"]
+[ext_resource type="AudioStream" uid="uid://c6il3k3j6metg" path="res://assets/CamelliaTeraIO.wav" id="8_g3e7w"]
+[ext_resource type="PackedScene" uid="uid://c3km24pfjqu30" path="res://scenes/overlays.tscn" id="9_cbsqw"]
+[ext_resource type="PackedScene" uid="uid://ichyh6a5eona" path="res://scenes/boundaries.tscn" id="10_478iu"]
+[ext_resource type="AudioStream" uid="uid://c57jboomcv48c" path="res://assets/vine-boom.mp3" id="11_33qbu"]
+[ext_resource type="AudioStream" uid="uid://c2b11nqsc1kr7" path="res://assets/vine-boom-bass-boost-sound-effect.mp3" id="12_8qr01"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_64ydi")
+
+[node name="Boss" parent="." node_paths=PackedStringArray("rocket_target") instance=ExtResource("2_6h3j4")]
+unique_name_in_owner = true
+rocket_target = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("1_3a2tl")]
+unique_name_in_owner = true
+position = Vector2(200, 300)
+
+[node name="UI" parent="." instance=ExtResource("4_8f3ew")]
+unique_name_in_owner = true
+z_index = 4000
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_vjala")]
+unique_name_in_owner = true
+visible = false
+z_index = 4096
+
+[node name="GameOver" parent="." instance=ExtResource("6_gph2e")]
+unique_name_in_owner = true
+visible = false
+z_index = 4096
+
+[node name="Floor" parent="." instance=ExtResource("7_8x2oy")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_g3e7w")
+bus = &"Music"
+
+[node name="Overlays" parent="." instance=ExtResource("9_cbsqw")]
+unique_name_in_owner = true
+z_index = 10
+
+[node name="Boundaries" parent="." instance=ExtResource("10_478iu")]
+
+[node name="BossDefeatSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_33qbu")
+max_polyphony = 4
+
+[node name="BossDefeatSfxBig" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("12_8qr01")
+max_polyphony = 4
+
+[connection signal="died" from="Boss" to="." method="_on_boss_died"]
+[connection signal="hp_changed" from="Boss" to="UI" method="set_boss_hp"]
+[connection signal="instantiate_this" from="Boss" to="." method="_on_boss_instantiate_this"]
+[connection signal="phase_changed" from="Boss" to="." method="_on_boss_phase_changed"]
+[connection signal="got_roasted" from="Player" to="." method="_on_player_got_roasted"]
+[connection signal="instantiate_this" from="Player" to="." method="_on_player_instantiate_this"]

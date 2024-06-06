@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://mnp6vfgny4nc"]
+
+[ext_resource type="Script" path="res://scenes/door.gd" id="1_jl8xm"]
+[ext_resource type="Texture2D" uid="uid://bqqmvraim6wv2" path="res://assets/door.svg" id="1_pytaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntm5q"]
+size = Vector2(30, 120)
+
+[sub_resource type="Curve" id="Curve_8uy5m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ggelj"]
+curve = SubResource("Curve_8uy5m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ikca3"]
+particle_flag_disable_z = true
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ggelj")
+
+[sub_resource type="Gradient" id="Gradient_l7s86"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.545098, 0.270588, 0.0745098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i7uq7"]
+gradient = SubResource("Gradient_l7s86")
+width = 16
+height = 16
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_jl8xm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_pytaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ntm5q")
+
+[node name="HitArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("RectangleShape2D_ntm5q")
+
+[node name="BreakParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_ikca3")
+texture = SubResource("GradientTexture2D_i7uq7")
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="finished" from="BreakParticles" to="." method="_on_break_particles_finished"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://v2eg058obr7i"]
+
+[ext_resource type="Texture2D" uid="uid://o1d07axheony" path="res://assets/boss_textures/boss1_square.jpeg" id="1_87wbc"]
+[ext_resource type="Texture2D" uid="uid://de06xj8t21em" path="res://assets/boss_textures/boss2_square.jpeg" id="2_whnja"]
+[ext_resource type="Texture2D" uid="uid://chsdudyiekgo5" path="res://assets/boss_textures/boss3_square.jpg" id="3_ghjn2"]
+[ext_resource type="Texture2D" uid="uid://doah6h8xd21i0" path="res://assets/boss_textures/boss4_square.jpg" id="4_jpm7u"]
+
+[node name="BossAmalgam" type="Node2D"]
+
+[node name="BossTex1" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, -64)
+scale = Vector2(0.032, 0.032)
+texture = ExtResource("1_87wbc")
+
+[node name="BossTex2" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, -64)
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("2_whnja")
+
+[node name="BossTex3" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, 64)
+scale = Vector2(0.193, 0.193)
+texture = ExtResource("3_ghjn2")
+
+[node name="BossTex4" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(64, 64)
+scale = Vector2(0.187, 0.187)
+texture = ExtResource("4_jpm7u")

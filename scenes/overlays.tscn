@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3km24pfjqu30"]
+
+[ext_resource type="Texture2D" uid="uid://cnphtp7qw2utg" path="res://assets/boss_textures/boss1.jpeg" id="1_8etxk"]
+[ext_resource type="Shader" path="res://scenes/fisheye.gdshader" id="1_gf86u"]
+[ext_resource type="Script" path="res://scenes/overlays.gd" id="1_vlfcy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7n7em"]
+shader = ExtResource("1_gf86u")
+shader_parameter/effect_amount = 1.1875e-07
+
+[sub_resource type="Animation" id="Animation_vgfao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fisheye:material:shader_parameter/effect_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.1875e-07]
+}
+
+[sub_resource type="Animation" id="Animation_elqnq"]
+resource_name = "new_phase"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fisheye:material:shader_parameter/effect_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.1875e-07, 1.1875e-07, 2.0, 2.0, 1.1875e-07]
+}
+
+[sub_resource type="Animation" id="Animation_rkvs4"]
+resource_name = "boss_death"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fisheye:material:shader_parameter/effect_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 5.99, 6),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1, 1, 1e+06, 1),
+"update": 0,
+"values": [0.5, 1.0, 1.5, 1.5, 2.5, 1.1875e-07]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ub0"]
+_data = {
+"RESET": SubResource("Animation_vgfao"),
+"boss_death": SubResource("Animation_rkvs4"),
+"new_phase": SubResource("Animation_elqnq")
+}
+
+[node name="Overlays" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_vlfcy")
+
+[node name="TestSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(400, 300)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_8etxk")
+
+[node name="Fisheye" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_7n7em")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_a2ub0")
+}

@@ -1,0 +1,145 @@
+[gd_scene load_steps=15 format=3 uid="uid://dw61nkxqomqqr"]
+
+[ext_resource type="Script" path="res://scenes/you_win.gd" id="1_5rkcx"]
+[ext_resource type="PackedScene" uid="uid://dln57n2t1jmr2" path="res://scenes/floor.tscn" id="1_kpdvv"]
+[ext_resource type="Texture2D" uid="uid://dr34a3dfgtlsd" path="res://assets/roaster.jpg" id="2_tb25e"]
+[ext_resource type="Texture2D" uid="uid://diu5mb8iwe4iy" path="res://assets/icon_inside.svg" id="3_82a5g"]
+[ext_resource type="Texture2D" uid="uid://ciitios7wevvg" path="res://icon.svg" id="4_640iv"]
+
+[sub_resource type="Gradient" id="Gradient_sokp5"]
+colors = PackedColorArray(0.784314, 0.784314, 0.784314, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g5ty6"]
+gradient = SubResource("Gradient_sokp5")
+
+[sub_resource type="Gradient" id="Gradient_qkvat"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r1hci"]
+gradient = SubResource("Gradient_qkvat")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q35b0"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -39.2, 0)
+scale_min = 0.02
+scale_max = 0.1
+color = Color(1, 1, 1, 0.498039)
+color_ramp = SubResource("GradientTexture1D_r1hci")
+color_initial_ramp = SubResource("GradientTexture1D_g5ty6")
+
+[sub_resource type="Gradient" id="Gradient_wtwu1"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iuoak"]
+gradient = SubResource("Gradient_wtwu1")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_2s0dw"]
+font_size = 48
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wxag8"]
+font_size = 24
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="YouWin" type="Node"]
+script = ExtResource("1_5rkcx")
+
+[node name="Floor" parent="." instance=ExtResource("1_kpdvv")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(400, 300)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tb25e")
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -71.0
+offset_right = 64.0
+offset_bottom = 57.0002
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.0472
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(64, 64)
+max_value = 8.0
+value = 8.0
+fill_mode = 5
+texture_under = ExtResource("3_82a5g")
+texture_progress = ExtResource("4_640iv")
+
+[node name="Smoke" type="GPUParticles2D" parent="."]
+position = Vector2(400, 294)
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_q35b0")
+texture = SubResource("GradientTexture2D_iuoak")
+lifetime = 2.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -92.0
+offset_top = -11.5
+offset_right = 92.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "THANKS FOR PLAYING!!!"
+label_settings = SubResource("LabelSettings_2s0dw")
+horizontal_alignment = 1
+
+[node name="HpLeft" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -92.0
+offset_top = -11.5
+offset_right = 92.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You managed to roast yourself with %s HP left!"
+label_settings = SubResource("LabelSettings_wxag8")
+horizontal_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -44.0
+offset_top = -31.0
+offset_right = 44.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Play Again"
+
+[connection signal="pressed" from="PlayAgain" to="." method="_on_play_again_pressed"]

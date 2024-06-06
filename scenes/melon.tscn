@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cklqwgh856436"]
+
+[ext_resource type="Texture2D" uid="uid://xe8hrcjsta36" path="res://assets/kiwano.svg" id="1_a74gk"]
+[ext_resource type="Script" path="res://scenes/melon.gd" id="1_gn0wx"]
+[ext_resource type="Texture2D" uid="uid://dtjx6e50xh8ka" path="res://assets/kiwano_boom.svg" id="3_2rb7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmmoq"]
+size = Vector2(24, 40)
+
+[node name="Melon" type="Area2D"]
+script = ExtResource("1_gn0wx")
+metadata/hurtful = true
+
+[node name="Base" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_a74gk")
+
+[node name="Boom" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_2rb7i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rmmoq")

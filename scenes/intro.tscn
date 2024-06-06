@@ -1,0 +1,364 @@
+[gd_scene load_steps=18 format=3 uid="uid://bgc0lj1plc0ko"]
+
+[ext_resource type="PackedScene" uid="uid://lyw3nk370iuh" path="res://scenes/player.tscn" id="1_4p743"]
+[ext_resource type="Script" path="res://scenes/intro.gd" id="1_i3vuy"]
+[ext_resource type="Texture2D" uid="uid://cksjgiw3fy0im" path="res://assets/title.svg" id="2_nkyjx"]
+[ext_resource type="Texture2D" uid="uid://dp50r3wdggbt" path="res://assets/intro_walls.svg" id="4_gec6r"]
+[ext_resource type="Texture2D" uid="uid://dsw1qxr70jhqs" path="res://assets/signpost.svg" id="4_tw1mj"]
+[ext_resource type="PackedScene" uid="uid://mnp6vfgny4nc" path="res://scenes/door.tscn" id="6_wb38u"]
+[ext_resource type="Texture2D" uid="uid://ll0m17shgmf0" path="res://assets/floor_tile.svg" id="7_f6s8k"]
+[ext_resource type="Texture2D" uid="uid://dr34a3dfgtlsd" path="res://assets/roaster.jpg" id="8_4d3ol"]
+[ext_resource type="PackedScene" uid="uid://v2eg058obr7i" path="res://scenes/boss_amalgam.tscn" id="9_va53p"]
+[ext_resource type="PackedScene" uid="uid://oo8nk45pvbhe" path="res://scenes/fire_barrier.tscn" id="10_536f4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_75lmu"]
+texture = ExtResource("4_gec6r")
+texture_region_size = Vector2i(30, 30)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+0:2/0/terrains_peering_bit/right_side = 0
+0:2/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/left_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15, -15, 15, -15, 15, 15, -15, 15)
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSet" id="TileSet_2sc4c"]
+tile_size = Vector2i(30, 30)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/1 = SubResource("TileSetAtlasSource_75lmu")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2cwxi"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt4gs"]
+size = Vector2(600, 32)
+
+[sub_resource type="Animation" id="Animation_7wixn"]
+resource_name = "boss_start"
+length = 12.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossAmalgam:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2670, 300), Vector2(2670, 300), Vector2(2350, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Roaster:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.25, 0.25), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Roaster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5, 6.5, 8),
+"transitions": PackedFloat32Array(1, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(2350, 300), Vector2(2350, 300), Vector2(2350, 150), Vector2(2350, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossAmalgam:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 8, 12),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossAmalgam:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 8, 12),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [0.0, 0.0, 62.8319]
+}
+
+[sub_resource type="Animation" id="Animation_22c8o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossAmalgam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2670, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Roaster:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Roaster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2350, 300)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossAmalgam:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BossAmalgam:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3bigd"]
+_data = {
+"RESET": SubResource("Animation_22c8o"),
+"boss_start": SubResource("Animation_7wixn")
+}
+
+[node name="Intro" type="Node"]
+script = ExtResource("1_i3vuy")
+
+[node name="Player" parent="." instance=ExtResource("1_4p743")]
+unique_name_in_owner = true
+position = Vector2(100, 300)
+is_intro = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(400, 100)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_nkyjx")
+
+[node name="Sign" type="Sprite2D" parent="."]
+position = Vector2(1262, 182)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_tw1mj")
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+position = Vector2(600, 0)
+tile_set = SubResource("TileSet_2sc4c")
+format = 2
+layer_0/tile_data = PackedInt32Array(65559, 1, 1, 131095, 1, 1, 196631, 1, 1, 196632, 1, 0, 196633, 65537, 0, 196634, 65537, 0, 23, 131073, 1, 196635, 65537, 0, 196636, 65537, 0, 196637, 65537, 0, 196639, 65537, 0, 196640, 65537, 0, 196641, 65537, 2, 196642, 65537, 2, 196643, 65537, 0, 196644, 65537, 2, 196645, 65537, 0, 196646, 65537, 2, 196638, 65537, 0, 196647, 65537, 2, 1048601, 65537, 0, 1179671, 131073, 1, 1245207, 131073, 1, 1048602, 65537, 2, 1048603, 65537, 2, 1048604, 65537, 2, 1048607, 65537, 0, 1048605, 65537, 2, 1114135, 1, 1, 1048599, 1, 1, 1048600, 1, 2, 1048608, 65537, 0, 1048609, 65537, 2, 1048610, 65537, 2, 1048611, 65537, 0, 1048612, 65537, 0, 1048613, 65537, 0, 1048614, 65537, 0, 1048615, 65537, 0, 1048616, 65537, 0, 1048618, 65537, 2, 1048617, 65537, 0, 196648, 65537, 2, 196649, 65537, 2, 196650, 65537, 2, 196651, 65537, 0, 196652, 131073, 2, 1048619, 65537, 0, 1048620, 131073, 0, 983063, 1, 1, 917527, 131073, 1, 851991, 131073, 1, 786455, 1, 0, 262167, 1, 1, 327703, 1, 1, 393239, 131073, 1, 458775, 1, 2, 786456, 131073, 0, 851992, 1, 1, 917528, 131073, 1, 983064, 1, 1, 262168, 131073, 1, 327704, 131073, 1, 393240, 131073, 1, 458776, 131073, 2, 1048606, 65537, 0, 131116, 131073, 1, 65580, 1, 1, 44, 1, 1, 1114156, 1, 1, 1179692, 131073, 1, 1245228, 131073, 1, 458782, 131073, 0, 524318, 131073, 1, 589854, 131073, 1, 655390, 131073, 1, 720926, 1, 1, 786462, 1, 1, 851998, 1, 1, 917534, 1, 1, 983070, 131073, 1, 458781, 1, 0, 524317, 1, 1, 589853, 131073, 1, 655389, 1, 1, 720925, 131073, 1, 786461, 1, 1, 851997, 1, 1, 917533, 131073, 1, 983069, 131073, 1, 262179, 131073, 1, 327715, 131073, 1, 393251, 131073, 1, 458787, 1, 1, 524323, 131073, 1, 589859, 131073, 1, 655395, 131073, 1, 720931, 1, 1, 786467, 1, 2, 262180, 131073, 1, 327716, 131073, 1, 393252, 1, 1, 458788, 131073, 1, 524324, 1, 1, 589860, 1, 1, 655396, 1, 1, 720932, 1, 1, 786468, 131073, 2)
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+position_smoothing_enabled = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1230.45
+offset_top = 154.675
+offset_right = 1294.45
+offset_bottom = 186.675
+text = "BBQ"
+label_settings = SubResource("LabelSettings_2cwxi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Door" parent="." instance=ExtResource("6_wb38u")]
+position = Vector2(1320, 300)
+
+[node name="Floor1" type="Sprite2D" parent="."]
+z_index = -4000
+texture_repeat = 2
+position = Vector2(1335, 105)
+texture = ExtResource("7_f6s8k")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 600, 390)
+
+[node name="Floor2" type="Sprite2D" parent="."]
+z_index = -4000
+texture_repeat = 2
+position = Vector2(1950, 0)
+texture = ExtResource("7_f6s8k")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 600)
+
+[node name="Barrier" type="StaticBody2D" parent="."]
+position = Vector2(1950, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier"]
+position = Vector2(-16, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qt4gs")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Barrier"]
+position = Vector2(816, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qt4gs")
+
+[node name="Roaster" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(2, 2, 2, 1)
+z_index = -500
+position = Vector2(2350, 300)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_4d3ol")
+
+[node name="BossAmalgam" parent="." instance=ExtResource("9_va53p")]
+position = Vector2(2670, 300)
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_3bigd")
+}
+
+[node name="FireBarrier" parent="." instance=ExtResource("10_536f4")]
+position = Vector2(1830, 300)
+
+[node name="Help1" type="Label" parent="."]
+offset_top = 570.0
+offset_right = 120.0
+offset_bottom = 600.0
+text = "WASD: Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Help2" type="Label" parent="."]
+offset_left = 1170.0
+offset_top = 570.0
+offset_right = 1290.0
+offset_bottom = 600.0
+text = "Mouse: Shoot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Help3" type="Label" parent="."]
+offset_left = 1800.0
+offset_top = 570.0
+offset_right = 1920.0
+offset_bottom = 600.0
+text = "Space: Dash"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Help4" type="Label" parent="."]
+offset_left = 2580.0
+offset_right = 2721.0
+offset_bottom = 30.0
+text = "Esc: Skip Cutscene"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="instantiate_this" from="Player" to="." method="_on_player_instantiate_this"]
+[connection signal="animation_finished" from="AnimPlayer" to="." method="_on_anim_player_animation_finished"]

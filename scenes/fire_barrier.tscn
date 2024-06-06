@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://oo8nk45pvbhe"]
+
+[ext_resource type="Texture2D" uid="uid://bgxvkn7yorkde" path="res://assets/fire.svg" id="1_5t2gq"]
+[ext_resource type="Script" path="res://scenes/fire_barrier.gd" id="1_i45jd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukwu8"]
+size = Vector2(16, 360)
+
+[node name="FireBarrier" type="Area2D"]
+script = ExtResource("1_i45jd")
+metadata/hurtful = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_repeat = 2
+rotation = 1.57079
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_5t2gq")
+region_enabled = true
+region_rect = Rect2(0, 0, 1440, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ukwu8")

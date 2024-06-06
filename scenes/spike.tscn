@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkncabetsbx2s"]
+
+[ext_resource type="Script" path="res://scenes/spike.gd" id="1_h6t1r"]
+[ext_resource type="Texture2D" uid="uid://cc3qpnhon1p73" path="res://assets/spike.svg" id="1_jh3pe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2c3lc"]
+radius = 8.0
+
+[node name="Spike" type="Area2D"]
+script = ExtResource("1_h6t1r")
+metadata/hurtful = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_jh3pe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_2c3lc")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

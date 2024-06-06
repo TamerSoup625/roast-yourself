@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dln57n2t1jmr2"]
+
+[ext_resource type="Texture2D" uid="uid://ll0m17shgmf0" path="res://assets/floor_tile.svg" id="1_cgy5c"]
+[ext_resource type="Script" path="res://scenes/floor.gd" id="2_hvrb3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hl66n"]
+
+[node name="Floor" type="Sprite2D"]
+z_index = -4096
+texture_repeat = 2
+texture = ExtResource("1_cgy5c")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 600)
+script = ExtResource("2_hvrb3")
+my_noise = SubResource("FastNoiseLite_hl66n")

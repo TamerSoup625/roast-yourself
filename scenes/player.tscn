@@ -1,0 +1,175 @@
+[gd_scene load_steps=22 format=3 uid="uid://lyw3nk370iuh"]
+
+[ext_resource type="Texture2D" uid="uid://ciitios7wevvg" path="res://icon.svg" id="1_r3yes"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_t4urv"]
+[ext_resource type="Texture2D" uid="uid://diu5mb8iwe4iy" path="res://assets/icon_inside.svg" id="2_ge22y"]
+[ext_resource type="AudioStream" uid="uid://boex13f7ey2j5" path="res://assets/bonk_BEtiM8g.mp3" id="4_o2y7d"]
+[ext_resource type="AudioStream" uid="uid://cir0l8am7yfny" path="res://assets/fire_sfx.mp3" id="5_54mua"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34v4x"]
+radius = 1.0
+
+[sub_resource type="Gradient" id="Gradient_jo30u"]
+colors = PackedColorArray(1, 1, 1, 0.498039, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bojco"]
+gradient = SubResource("Gradient_jo30u")
+
+[sub_resource type="Curve" id="Curve_f0ylp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8fhbs"]
+curve = SubResource("Curve_f0ylp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0yngl"]
+particle_flag_disable_z = true
+spread = 60.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+damping_min = 500.0
+damping_max = 500.0
+scale_min = 0.01
+scale_max = 0.02
+scale_curve = SubResource("CurveTexture_8fhbs")
+color_initial_ramp = SubResource("GradientTexture1D_bojco")
+
+[sub_resource type="Gradient" id="Gradient_o6q7b"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p3vl6"]
+gradient = SubResource("Gradient_o6q7b")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25k4y"]
+radius = 1.0
+
+[sub_resource type="Gradient" id="Gradient_m31dj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4, 0.8)
+colors = PackedColorArray(0.278431, 0.54902, 0.74902, 1, 0.211765, 0.239216, 0.321569, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mak5j"]
+gradient = SubResource("Gradient_m31dj")
+
+[sub_resource type="Gradient" id="Gradient_r12q5"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cj17d"]
+gradient = SubResource("Gradient_r12q5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ec3v1"]
+particle_flag_disable_z = true
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.75
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_cj17d")
+color_initial_ramp = SubResource("GradientTexture1D_mak5j")
+
+[sub_resource type="Gradient" id="Gradient_uwbbi"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4cpqj"]
+gradient = SubResource("Gradient_uwbbi")
+width = 8
+height = 8
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_t4urv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_34v4x")
+
+[node name="HpBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(64, 64)
+max_value = 8.0
+value = 8.0
+fill_mode = 5
+texture_under = ExtResource("2_ge22y")
+texture_progress = ExtResource("1_r3yes")
+
+[node name="DashTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.35
+one_shot = true
+
+[node name="FireBulletTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.15
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="IFrameTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="ShootParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_0yngl")
+texture = SubResource("GradientTexture2D_p3vl6")
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_25k4y")
+
+[node name="HurtParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ec3v1")
+texture = SubResource("GradientTexture2D_4cpqj")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="HitSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_o2y7d")
+
+[node name="FireSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_54mua")
+max_polyphony = 2
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="FireBulletTimer" to="." method="_on_fire_bullet_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
